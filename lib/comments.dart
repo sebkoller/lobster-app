@@ -40,10 +40,12 @@ class CommentViewState extends State<CommentView> {
         future: data(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
+            if (snapshot.data.items.length == 0) {
+              return Center(child: Text("No comments."));
+            }
             return ListView.builder(
               itemCount: snapshot.data.items.length,
               itemBuilder: (context, index) {
-
                 return new Container(
                     child: new Card(
                         child: new Column(
