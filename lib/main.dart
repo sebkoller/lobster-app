@@ -20,7 +20,7 @@ class LobstersApp extends StatelessWidget {
   Future getCurrentTheme() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool darkMode = prefs.getBool("usr_darkMode") ?? false;
-    currentTheme = darkMode ? darkTheme() : lightTheme();
+    setState() { currentTheme = darkMode ? darkTheme() : lightTheme(); }
   }
 
   @override
