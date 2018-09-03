@@ -51,6 +51,42 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: new AppBar(
         title: new Text(widget.title),
       ),
+      drawer: new Drawer(
+        child: ListView(
+          children: <Widget>[
+            UserAccountsDrawerHeader(
+              accountEmail: Text("not_signed_in"),
+              accountName: Text("Not Signed In"),
+              currentAccountPicture: CircleAvatar(),
+              onDetailsPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text("Coming Soon"),
+                      content: Text(
+                          "Lobste.rs hasn't implemented OAuth for sign in yet, but work is in progress."),
+                      actions: <Widget>[
+                        FlatButton(
+                          child: Text("OK"),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+            ),
+            ListTile(
+              leading: new Icon(Icons.settings),
+              title: Text("Settings"),
+              onTap: () {},
+            ),
+          ],
+        ),
+      ),
       body: FutureBuilder(
         future: data(),
         builder: (context, snapshot) {
