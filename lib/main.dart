@@ -4,6 +4,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:lobsters_app/comments.dart';
+import 'package:lobsters_app/settings.dart';
+import 'package:lobsters_app/themes.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:lobsters_app/api.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -12,13 +15,20 @@ void main() => runApp(new LobstersApp());
 
 class LobstersApp extends StatelessWidget {
   // This widget is the root of your application.
+  ThemeData currentTheme = darkTheme();
+
+  Future getCurrentTheme() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool darkMode = prefs.getBool("usr_darkMode") ?? false;
+    currentTheme = darkMode ? darkTheme() : lightTheme();
+  }
+
   @override
   Widget build(BuildContext context) {
+    getCurrentTheme();
     return new MaterialApp(
       title: 'Lobste.rs App',
-      theme: new ThemeData(
-        primarySwatch: Colors.red,
-      ),
+      theme: currentTheme,
       home: new MyHomePage(title: 'Lobste.rs App'),
     );
   }
@@ -82,7 +92,9 @@ class _MyHomePageState extends State<MyHomePage> {
             ListTile(
               leading: new Icon(Icons.settings),
               title: Text("Settings"),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => SettingsPage(),));
+              },
             ),
           ],
         ),

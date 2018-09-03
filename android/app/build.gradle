@@ -36,8 +36,8 @@ android {
         applicationId "com.nikhiljha.lobstersapp"
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 2
-        versionName "v0.0.2"
+        versionCode flutterVersionCode.toInteger()
+        versionName flutterVersionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     
