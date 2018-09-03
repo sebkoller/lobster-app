@@ -62,7 +62,7 @@ class CommentViewState extends State<CommentView> {
                           new Padding(
                               child: Row(
                                 children: <Widget>[
-                                  new Icon(Icons.comment),
+                                  new Icon(Icons.comment, size: 20.0),
                                   new Text(
                                       " ${snapshot.data.items[index].score.toString()} - ${snapshot.data.items[index].commenting_user.username}",
                                       textAlign: TextAlign.right,
@@ -78,15 +78,15 @@ class CommentViewState extends State<CommentView> {
                             // Find a replacement for this soon.
                               child: new HtmlView(data: snapshot.data.items[index].comment),
                               padding: const EdgeInsets.only(
-                                  left: 16.0,
-                                  right: 16.0,
-                                  top: 16.0,
-                                  bottom: 16.0))
+                                  left: 24.0,
+                                  right: 4.0,
+                                  top: 4.0,
+                                  bottom: 8.0))
                         ])),
                     padding: new EdgeInsets.only(
-                        left: 4.0 + snapshot.data.items[index].indent_level * 10,
-                        right: 16.0,
-                        top: snapshot.data.items[index].indent_level == 0 ? 16.0 : 2.0,
+                        left: 4.0 + (snapshot.data.items[index].indent_level - 1) * 10,
+                        right: 4.0,
+                        top: snapshot.data.items[index].indent_level == 0 ? 8.0 : 2.0,
                         bottom: 0.0));
               },
             );
