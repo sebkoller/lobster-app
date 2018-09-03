@@ -41,7 +41,13 @@ class CommentViewState extends State<CommentView> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             if (snapshot.data.items.length == 0) {
-              return Center(child: Text("No comments."));
+              return Center(child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Icon(Icons.forum, size: 90.0,),
+                  Text("\nNo Comments"),
+                ],
+              ));
             }
             return ListView.builder(
               itemCount: snapshot.data.items.length,

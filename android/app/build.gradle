@@ -64,6 +64,16 @@ android {
             dimension "deploy"
             signingConfig null
         }
+
+        fdebug {
+            dimension "deploy"
+            signingConfig null
+        }
+
+        fmain {
+            dimension "deploy"
+            signingConfig signingConfigs.release
+        }
     }
 
     android.applicationVariants.all { variant ->
