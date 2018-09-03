@@ -33,7 +33,6 @@ class _SettingsPageState extends State<SettingsPage> {
           if (snapshot.hasData) {
             return ListView(
               children: <Widget>[
-                Text("Restart required for theme change."),
                 _BooleanItem("Dark Theme", Theme.of(context).brightness == Brightness.dark, (bool value) {
                   DynamicTheme.of(context).setBrightness(value ? Brightness.dark : Brightness.light);
                 }),
