@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:dynamic_theme/dynamic_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -33,9 +34,8 @@ class _SettingsPageState extends State<SettingsPage> {
             return ListView(
               children: <Widget>[
                 Text("Restart required for theme change."),
-                _BooleanItem("Dark Theme", snapshot.data.darkMode, (bool value) {
-                  setSettings("usr_darkMode", value);
-                  setState() { Theme.of(context).copyWith(backgroundColor: Colors.black,); }
+                _BooleanItem("Dark Theme", Theme.of(context).brightness == Brightness.dark, (bool value) {
+                  DynamicTheme.of(context).setBrightness(value ? Brightness.dark : Brightness.light);
                 }),
               ],
             );

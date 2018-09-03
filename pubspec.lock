@@ -80,6 +80,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.2"
+  dynamic_theme:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "79b7aa863212be44a9fcf0212d048e9c1ba3539e"
+      url: "git://github.com/Norbert515/dynamic_theme.git"
+    source: git
+    version: "0.0.1"
   flutter:
     dependency: "direct main"
     description: flutter

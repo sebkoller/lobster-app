@@ -5,31 +5,38 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:lobsters_app/comments.dart';
 import 'package:lobsters_app/settings.dart';
-import 'package:lobsters_app/themes.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:lobsters_app/api.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:dynamic_theme/dynamic_theme.dart';
 
 void main() => runApp(new LobstersApp());
 
-class LobstersApp extends StatelessWidget {
+class LobstersApp extends StatefulWidget {
   // This widget is the root of your application.
-  ThemeData currentTheme = darkTheme();
-
-  Future getCurrentTheme() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool darkMode = prefs.getBool("usr_darkMode") ?? false;
-    setState() { currentTheme = darkMode ? darkTheme() : lightTheme(); }
+  @override
+  LobstersAppState createState() {
+    return new LobstersAppState();
   }
+}
+
+class LobstersAppState extends State<LobstersApp> {
 
   @override
   Widget build(BuildContext context) {
-    getCurrentTheme();
-    return new MaterialApp(
-      title: 'Lobste.rs App',
-      theme: currentTheme,
-      home: new MyHomePage(title: 'Lobste.rs App'),
+    return DynamicTheme(
+        defaultBrightness: Brightness.light,
+        data: (brightness) => new ThemeData(
+          primaryColor: Colors.red[900],
+          accentColor: Colors.red[500],
+          brightness: brightness,
+        ),
+        themedWidgetBuilder: (context, theme) { return new MaterialApp(
+          title: 'Lobste.rs App',
+          theme: theme,
+          home: new MyHomePage(title: 'Lobste.rs App'),
+        ); 
+      }
     );
   }
 }
