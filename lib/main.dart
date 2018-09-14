@@ -48,6 +48,23 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int current = 0;
+
+  HomeList hottest;
+  HomeList newest;
+  List<Widget> pages;
+  Widget currentPage;
+
+  @override
+  void initState() {
+    hottest = HomeList(endpoint: "https://lobste.rs/hottest.json",);
+    newest = HomeList(endpoint: "https://lobste.rs/newest.json",);
+
+    pages = [hottest, newest];
+    currentPage = hottest;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -92,7 +109,20 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      body: HomeList(endpoint: "https://lobste.rs/hottest.json",),
+      body: currentPage,
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: current,
+        onTap: (int index) {
+          setState(() {
+            current = index;
+            currentPage = pages[index];
+          });
+        },  
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.show_chart), title: Text("Hot")),
+          BottomNavigationBarItem(icon: Icon(Icons.new_releases), title: Text("New")),
+        ],
+      ),
     );
   }
 }
