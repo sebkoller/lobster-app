@@ -2,9 +2,11 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_html_view/flutter_html_view.dart';
 import 'package:lobsters_app/api.dart';
 import 'package:http/http.dart' as http;
+
+import 'package:html2md/html2md.dart' as html2md;
+import 'package:flutter_markdown/flutter_markdown.dart';
 
 class CommentView extends StatefulWidget {
   final LobsterItem item;
@@ -76,7 +78,7 @@ class CommentViewState extends State<CommentView> {
                           new Padding(
                             // TODO: This library is... weird. It prints things to stdout for no reason and it has a low score on dartpub.
                             // Find a replacement for this soon.
-                              child: new HtmlView(data: snapshot.data.items[index].comment),
+                              child: new MarkdownBody(data: html2md.convert(snapshot.data.items[index].comment),),
                               padding: const EdgeInsets.only(
                                   left: 24.0,
                                   right: 4.0,
