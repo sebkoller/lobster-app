@@ -15,8 +15,7 @@ environment:
 dependencies:
   http: any
   url_launcher: any
-  html2md: 0.2.1
-  flutter_markdown: 0.2.0
+  flutter_html: 0.7.1
   flutter_slidable: "^0.4.4"
   shared_preferences: 0.4.2
   dynamic_theme:
