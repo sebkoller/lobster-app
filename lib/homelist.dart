@@ -34,52 +34,52 @@ class HomeListState extends State<HomeList> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: data(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return ListView.builder(
-              itemCount: snapshot.data.items.length,
-              itemBuilder: (context, index) {
-                return new Material(
-                  child: InkWell(
-                    child: Slidable(
-                      delegate: new SlidableDrawerDelegate(),
-                      actionExtentRatio: 0.25,
-                      child: new ListTile(
-                        title: Text(snapshot.data.items[index].title),
-                        subtitle: Text(
-                            snapshot.data.items[index].created_at.toString()),
-                        leading: new CircleAvatar(
-                          child:
-                              Text(snapshot.data.items[index].score.toString()),
-                        ),
+      future: data(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return ListView.builder(
+            itemCount: snapshot.data.items.length,
+            itemBuilder: (context, index) {
+              return new Material(
+                child: InkWell(
+                  child: Slidable(
+                    delegate: new SlidableDrawerDelegate(),
+                    actionExtentRatio: 0.25,
+                    child: new ListTile(
+                      title: Text(snapshot.data.items[index].title),
+                      subtitle: Text(
+                          snapshot.data.items[index].created_at.toString()),
+                      leading: new CircleAvatar(
+                        child:
+                            Text(snapshot.data.items[index].score.toString()),
                       ),
-                      actions: <Widget>[
-                        new IconSlideAction(
-                          caption: "Read Article",
-                          color: Colors.blue,
-                          icon: Icons.link,
-                          onTap: () => launch(snapshot.data.items[index].url),
-                        ),
-                      ],
                     ),
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => CommentView(
-                                  item: snapshot.data.items[index],
-                                ),
-                          ));
-                    },
+                    actions: <Widget>[
+                      new IconSlideAction(
+                        caption: "Read Article",
+                        color: Colors.blue,
+                        icon: Icons.link,
+                        onTap: () => launch(snapshot.data.items[index].url),
+                      ),
+                    ],
                   ),
-                );
-              },
-            );
-          } else {
-            return Center(child: CircularProgressIndicator());
-          }
-        },
-      );
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CommentView(
+                                item: snapshot.data.items[index],
+                              ),
+                        ));
+                  },
+                ),
+              );
+            },
+          );
+        } else {
+          return Center(child: CircularProgressIndicator());
+        }
+      },
+    );
   }
 }

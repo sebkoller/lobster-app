@@ -16,23 +16,22 @@ class LobstersApp extends StatefulWidget {
 }
 
 class LobstersAppState extends State<LobstersApp> {
-
   @override
   Widget build(BuildContext context) {
     return DynamicTheme(
         defaultBrightness: Brightness.light,
         data: (brightness) => new ThemeData(
-          primaryColor: Colors.red[900],
-          accentColor: Colors.red[500],
-          brightness: brightness,
-        ),
-        themedWidgetBuilder: (context, theme) { return new MaterialApp(
-          title: 'Lobste.rs App',
-          theme: theme,
-          home: new MyHomePage(title: 'Lobste.rs App'),
-        ); 
-      }
-    );
+              primaryColor: Colors.red[900],
+              accentColor: Colors.red[500],
+              brightness: brightness,
+            ),
+        themedWidgetBuilder: (context, theme) {
+          return new MaterialApp(
+            title: 'Lobste.rs App',
+            theme: theme,
+            home: new MyHomePage(title: 'Lobste.rs App'),
+          );
+        });
   }
 }
 
@@ -57,8 +56,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
-    hottest = HomeList(endpoint: "https://lobste.rs/hottest.json",);
-    newest = HomeList(endpoint: "https://lobste.rs/newest.json",);
+    hottest = HomeList(
+      endpoint: "https://lobste.rs/hottest.json",
+    );
+    newest = HomeList(
+      endpoint: "https://lobste.rs/newest.json",
+    );
 
     pages = [hottest, newest];
     currentPage = hottest;
@@ -103,7 +106,11 @@ class _MyHomePageState extends State<MyHomePage> {
               leading: new Icon(Icons.settings),
               title: Text("Settings"),
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => SettingsPage(),));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SettingsPage(),
+                    ));
               },
             ),
           ],
@@ -117,10 +124,12 @@ class _MyHomePageState extends State<MyHomePage> {
             current = index;
             currentPage = pages[index];
           });
-        },  
+        },
         items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.show_chart), title: Text("Hot")),
-          BottomNavigationBarItem(icon: Icon(Icons.new_releases), title: Text("New")),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.show_chart), title: Text("Hot")),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.new_releases), title: Text("New")),
         ],
       ),
     );

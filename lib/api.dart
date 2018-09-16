@@ -1,3 +1,4 @@
+// This is the class for the JSON returned from the homepage.
 class LobsterData {
   final List<LobsterItem> items;
 
@@ -9,6 +10,8 @@ class LobsterData {
   }
 }
 
+// This is the class for each item, used in various other places.
+// TODO: Add more properties, this isn't all of them.
 class LobsterItem {
   final String short_id;
   final String short_id_url;
@@ -17,7 +20,13 @@ class LobsterItem {
   final String title;
   final int score;
 
-  LobsterItem({this.score, this.short_id, this.title, this.created_at, this.short_id_url, this.url});
+  LobsterItem(
+      {this.score,
+      this.short_id,
+      this.title,
+      this.created_at,
+      this.short_id_url,
+      this.url});
   factory LobsterItem.fromJson(Map<String, dynamic> parsedJson) {
     return new LobsterItem(
         created_at: DateTime.parse(parsedJson['created_at']),
@@ -29,6 +38,7 @@ class LobsterItem {
   }
 }
 
+// This is the parent object that contains the comments on a comments page.
 class LobsterComments {
   final List<Comment> items;
 
@@ -41,6 +51,8 @@ class LobsterComments {
   }
 }
 
+// Each individual comment looks like this.
+// TODO: Add more properties, this isn't all of them.
 class Comment {
   final String short_id;
   final DateTime created_at;
@@ -49,19 +61,27 @@ class Comment {
   final int indent_level;
   final int score;
 
-  Comment({this.score, this.short_id, this.created_at, this.comment, this.commenting_user, this.indent_level});
+  Comment(
+      {this.score,
+      this.short_id,
+      this.created_at,
+      this.comment,
+      this.commenting_user,
+      this.indent_level});
   factory Comment.fromJson(Map<String, dynamic> parsedJson) {
     return new Comment(
-        created_at: DateTime.parse(parsedJson['created_at']),
-        short_id: parsedJson['short_id'],
-        score: parsedJson['score'],
-        comment: parsedJson['comment'],
-        commenting_user: User.fromJson(parsedJson['commenting_user']),
-        indent_level: parsedJson['indent_level'],
+      created_at: DateTime.parse(parsedJson['created_at']),
+      short_id: parsedJson['short_id'],
+      score: parsedJson['score'],
+      comment: parsedJson['comment'],
+      commenting_user: User.fromJson(parsedJson['commenting_user']),
+      indent_level: parsedJson['indent_level'],
     );
   }
 }
 
+// Each individual user looks like this.
+// TODO: Add more properties, this isn't all of them.
 class User {
   final String username;
   final String avatar_url;
@@ -71,10 +91,10 @@ class User {
   User({this.username, this.avatar_url, this.created_at, this.is_admin});
   factory User.fromJson(Map<String, dynamic> parsedJson) {
     return new User(
-        created_at: DateTime.parse(parsedJson['created_at']),
-        username: parsedJson['username'],
-        avatar_url: parsedJson['avatar_url'],
-        is_admin: parsedJson['is_admin'],
+      created_at: DateTime.parse(parsedJson['created_at']),
+      username: parsedJson['username'],
+      avatar_url: parsedJson['avatar_url'],
+      is_admin: parsedJson['is_admin'],
     );
   }
 }

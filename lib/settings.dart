@@ -13,7 +13,9 @@ class _SettingsPageState extends State<SettingsPage> {
   Future<Settings> getSettings() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool darkMode = prefs.getBool("usr_darkMode") ?? false;
-    return new Settings(darkMode: darkMode,);
+    return new Settings(
+      darkMode: darkMode,
+    );
   }
 
   void setSettings(String setting, dynamic value) async {
@@ -33,13 +35,18 @@ class _SettingsPageState extends State<SettingsPage> {
           if (snapshot.hasData) {
             return ListView(
               children: <Widget>[
-                _BooleanItem("Dark Theme", Theme.of(context).brightness == Brightness.dark, (bool value) {
-                  DynamicTheme.of(context).setBrightness(value ? Brightness.dark : Brightness.light);
+                _BooleanItem("Dark Theme",
+                    Theme.of(context).brightness == Brightness.dark,
+                    (bool value) {
+                  DynamicTheme.of(context).setBrightness(
+                      value ? Brightness.dark : Brightness.light);
                 }),
               ],
             );
           }
-          return Center(child: CircularProgressIndicator(),);
+          return Center(
+            child: CircularProgressIndicator(),
+          );
         },
       ),
     );
@@ -52,7 +59,7 @@ class Settings {
 }
 
 class _BooleanItem extends StatelessWidget {
-  const _BooleanItem(this.title, this.value, this.onChanged, { this.switchKey });
+  const _BooleanItem(this.title, this.value, this.onChanged, {this.switchKey});
 
   final String title;
   final bool value;
@@ -81,7 +88,7 @@ class _BooleanItem extends StatelessWidget {
 }
 
 class _OptionsItem extends StatelessWidget {
-  const _OptionsItem({ Key key, this.child }) : super(key: key);
+  const _OptionsItem({Key key, this.child}) : super(key: key);
 
   final Widget child;
 
