@@ -19,6 +19,7 @@ class LobsterItem {
   final DateTime created_at;
   final String title;
   final int score;
+  final User submitter_user;
 
   LobsterItem(
       {this.score,
@@ -26,7 +27,8 @@ class LobsterItem {
       this.title,
       this.created_at,
       this.short_id_url,
-      this.url});
+      this.url,
+      this.submitter_user});
   factory LobsterItem.fromJson(Map<String, dynamic> parsedJson) {
     return new LobsterItem(
         created_at: DateTime.parse(parsedJson['created_at']),
@@ -34,7 +36,8 @@ class LobsterItem {
         short_id_url: parsedJson['short_id_url'],
         url: parsedJson['url'],
         title: parsedJson['title'],
-        score: parsedJson['score']);
+        score: parsedJson['score'],
+        submitter_user: User.fromJson(parsedJson['submitter_user']));
   }
 }
 

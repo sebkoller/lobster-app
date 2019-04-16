@@ -3,10 +3,11 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:http/http.dart' as http;
 import 'package:lobsters_app/api.dart';
 import 'package:lobsters_app/comments.dart';
+import 'package:lobsters_app/utils.dart' as utils;
 import 'package:url_launcher/url_launcher.dart';
-import 'package:http/http.dart' as http;
 
 class HomeList extends StatefulWidget {
   final String endpoint;
@@ -47,8 +48,7 @@ class HomeListState extends State<HomeList> {
                     actionExtentRatio: 0.25,
                     child: new ListTile(
                       title: Text(snapshot.data.items[index].title),
-                      subtitle: Text(
-                          snapshot.data.items[index].created_at.toString()),
+                      subtitle: buildSubtitle(snapshot.data.items[index]),
                       leading: new CircleAvatar(
                         child:
                             Text(snapshot.data.items[index].score.toString()),
@@ -81,5 +81,10 @@ class HomeListState extends State<HomeList> {
         }
       },
     );
+  }
+
+  Text buildSubtitle(LobsterItem item) {
+    final timeSpan = utils.getAbbreviatedTimeSpan(item.created_at);
+    return Text('$timeSpan - ${item.submitter_user.username}');
   }
 }
