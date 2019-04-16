@@ -4,9 +4,9 @@ An iOS and Android app for lobste.rs and its sister sites. Contributions welcome
 
 ## Screenshots
 
-![](/screenshots/1.png)
-![](/screenshots/2.png)
-![](/screenshots/3.png)
+<a href="https://raw.githubusercontent.com/sebkoller/lobster-app/master/screenshots/1.png"><img src="/screenshots/1.png" width="288"></a>
+<a href="https://raw.githubusercontent.com/sebkoller/lobster-app/master/screenshots/2.png"><img src="/screenshots/2.png" width="288"></a>
+<a href="https://raw.githubusercontent.com/sebkoller/lobster-app/master/screenshots/3.png"><img src="/screenshots/3.png" width="288"></a>
 
 ## Getting Started
 
